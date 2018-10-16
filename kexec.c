@@ -288,7 +288,7 @@ static void load_kernel(char *image)
 
 				/* Parse function descriptor for ELFv1 kernels */
 				if ((ehdr.e_flags & 3) == 2)
-					kernel_entry = ehdr.e_entry;
+					kernel_entry = ehdr.e_entry - phdr.p_vaddr;
 				else {
 					kernel_entry = get_entry_addr(e, ehdr, ehdr.e_entry) - phdr.p_vaddr;
 					debug_printf("Kernel entry: 0x%lx\n", kernel_entry);
